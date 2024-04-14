@@ -7,9 +7,6 @@ import { User } from '~/types'
 import api from './api'
 
 
-const delay = (amount = 750) =>
-  new Promise(resolve => setTimeout(resolve, amount))
-
 export async function signInRequest(
   signInData
 ){
