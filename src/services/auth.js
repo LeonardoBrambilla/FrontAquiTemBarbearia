@@ -1,9 +1,5 @@
 import { setCookie } from 'nookies'
 
-import { AUTH_TOKEN_NAME, AUTH_TOKEN_TIME } from '~/constants'
-import { SignInData } from '~/contexts/AuthContext'
-import { User } from '~/types'
-
 import api from './api'
 
 
@@ -15,14 +11,14 @@ export async function signInRequest(
 }
 
 export async function signUpRequest(signUpData) {
-  const { data } = await api.post<string>('auth/register', signUpData)
+  const { data } = await api.post('auth/register', signUpData)
   return data
 }
 
 export function SetAuthenticationToken(token) {
   api.defaults.headers['Authorization'] = `Bearer ${token}`
-  setCookie(undefined, AUTH_TOKEN_NAME, token, {
+  setCookie(undefined, "token", token, {
     path: '/',
-    maxAge: AUTH_TOKEN_TIME
+    maxAge: 300
   })
 }

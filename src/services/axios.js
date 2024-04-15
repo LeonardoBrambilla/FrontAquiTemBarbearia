@@ -1,13 +1,11 @@
 import axios from 'axios'
 import { parseCookies } from 'nookies'
 
-import { AUTH_TOKEN_NAME } from '~/constants'
-
-export function getAPIClient(ctx?: any) {
-  const { [AUTH_TOKEN_NAME]: token } = parseCookies(ctx)
+export function getAPIClient(ctx) {
+  const { ["token"]: token } = parseCookies(ctx)
 
   const api = axios.create({
-    baseURL: process.env.API_URL,
+    baseURL: "http://localhost:5231/api",
     headers: { Accept: 'application/json',  'X-User-Agent-Time-Zone': Intl.DateTimeFormat().resolvedOptions().timeZone},
     withCredentials: true
   })
